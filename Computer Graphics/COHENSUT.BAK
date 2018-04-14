@@ -1,0 +1,158 @@
+//	Program to implement cohensutherland line clipping algorithm
+// 	works only for UDRL = 0000,1000,0100,1000,0001
+//	u -> up
+//	d->down
+//	r-> right
+//	l->left
+
+
+
+#include<stdio.h>
+#include<conio.h>
+#include<graphics.h>
+#include<dos.h>
+int arr[4];
+float X,Y;	// global variables that will contain final X and Y value
+
+void CohenSutherland(int arr[],int xl,int yl,int xh,int yh,float x,float y,float slope);
+
+void calculateOutcode(int xl,int yl,int xh,int yh,float x1,float y1)
+{
+	int i;
+
+	if(x1 < xl)
+		arr[3] = 1 ;
+	else
+		arr[3] = 0;
+
+	if(x1 > xh)
+		arr[2] = 1;
+	else
+		arr[2] = 0 ;
+
+	if(y1 < yl)
+		arr[1] = 1;
+	else
+		arr[1] = 0;
+
+	if(y1 > yh)
+		arr[0] = 1;
+	else
+		arr[0] = 0;
+
+
+}
+void main()
+{
+	int gd=DETECT,gm;
+	int result[4];
+	int left ,right ,up,down;
+
+	int zeroCount =0;
+	float slope;
+	// it will check if all the numbers are zero or not
+	// if zeroCount = 4	=> all the bits are 0
+
+	int outcodex1y1[4] , outcodex2y2[4],i;
+
+	int xl,yl,xh,yh;
+	float x1,y1,x2,y2,X1,Y1,X2,Y2,X1new,X2new,Y1new,Y2new;
+	clrscr();
+
+	// taking window co-ordinates
+	printf("\nEnter low window co-ordinate(XL,YL): ");
+	scanf("%d%d",&xl,&yl);
+	printf("\nEnter highest window co-ordinate(XH,YH): ");
+	scanf("%d%d",&xh,&yh);
+
+	// taking the first and last point of line from user
+	printf("\nEnter first point of line (x1,y1): ");
+	scanf("%f%f",&x1,&y1);
+	printf("\nEnter last point of line (x2,y2): ");
+	scanf("%f%f",&x2,&y2);
+
+	initgraph(&gd,&gm,"C:\\TC\\BGI");
+	rectangle(xl,yl,xh,yh);
+	line(x1,y1,x2,y2);
+
+	// calculating outcode of (x1,y1)
+	calculateOutcode(xl,yl,xh,yh,x1,y1);
+
+	for(i=0;i<4;i++)
+		outcodex1y1[i] = arr[i];
+
+	// calculating outcode of (x2,y2)
+	calculateOutcode(xl,yl,xh,yh,x2,y2);
+
+	//copy from the global variable to local variable
+	for(i=0;i<4;i++)
+		outcodex2y2[i] = arr[i];
+
+	// now we have to decide which portion of line is inside the window
+	// for that we have to perform AND operation of both outcodes
+	for(i=0;i<4;i++)
+	{
+		result[i] = outcodex1y1[i] && outcodex2y2[i] ;
+		if(result[i] == 0)
+			zeroCount++;
+	}
+	getch();
+
+	if(zeroCount == 4)
+	{
+		// calculate slope of line
+		slope =(y2 - y1)/(x2 - x1);
+
+		CohenSutherland(outcodex1y1,xl,yl,xh,yh,x1,y1,slope);
+		X1new=X;
+		Y1new=Y;
+
+		CohenSutherland(outcodex2y2,xl,yl,xh,yh,x2,y2,slope);
+		X2new=X;
+		Y2new=Y;
+
+		cleardevice();
+		outtextxy(0,0,"After Clipping!");
+		rectangle(xl,yl,xh,yh);
+		line(X1new,Y1new,X2new,Y2new);
+		getch();
+
+	}
+	else
+	{
+		printf("line is discarded");
+	}
+       getch();
+       closegraph();
+}
+
+void CohenSutherland(int arr[],int xl,int yl,int xh,int yh,float x,float y,float slope)
+{
+	X=0;
+	Y=0;
+	if(arr[3] == 1)  // point lies on left so use X=x1
+	{
+		X=xl;
+		Y=(slope * (xl-x)) + y;
+	}
+	else if(arr[2] == 1)	// point lies on right
+	{
+		X=xh;
+		Y=(slope * (xh-x)) + y;
+	}
+	else if(arr[1] == 1)     // point lies below window
+	{
+		Y=yl;
+		X = x - ((y - yl)/slope);
+	}
+	else if(arr[0] == 1)   // point lies above window
+	{
+		Y=yh;
+		X = x - ((y-yh)/slope);
+	}
+	else	// if line lies inside the window
+	{
+		X=x;
+		Y=y;
+	}
+}
