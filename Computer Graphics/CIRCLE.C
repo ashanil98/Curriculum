@@ -16,7 +16,7 @@ void main()
 	dp=1-r;	// initial value of decision parameter
 	x = 0;
 	y = r;	// since we start plotting from second octant
-	//pixel(xc,yc,x,y);
+	pixel(xc,yc,x,y);
 	while(x<y)
 	{
 		x = x+1;
