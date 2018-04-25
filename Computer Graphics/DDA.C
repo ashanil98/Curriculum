@@ -1,4 +1,4 @@
-// DDA line drawing alogorithm in c
+// DDA(digital differential analyzer) line drawing alogorithm in c
 #include<stdio.h>
 #include<conio.h>
 #include<graphics.h>
@@ -51,7 +51,7 @@ void DDA(int x1,int y1,int x2,int y2)
 int round(float x)
 {
 	int temp = (int)x;
-	if(x > (temp+0.5))
+	if(x >= (temp+0.5))
 		return temp+1;
 	else
 		return temp;
