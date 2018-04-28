@@ -40,7 +40,7 @@ int RabinKarp(char text[],char pattern[])
 	int m,n,i,temp = 0,j,k;
 	m = strlen(pattern);
 	n = strlen(text);
-	for(i=0;i<=n;i++)
+	for(i=0;i<=n-m;i++)
 	{
 		temp++;
 		if(getHashValue(text,i,i+m) == getHashValue(pattern,0,m))
