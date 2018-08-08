@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+	<head>
+		<title>JavaScript</title>
+		<script>
+			/*
+			function validateForm(){
+				var x = document.form['myForm']['name'].value;
+				// document.write("<br><br>Welcome"+x)
+				return document.writeln("<br><br>Welcome"+x);
+				onload="sorting()"
+			}*/
+			function validateForm() {
+    			var x = document.forms["myForm"]["name"].value;
+    
+       			alert("Welcome "+x);
+        	
+   
+			}
+
+			function sorting(){
+				var data = new Array();
+				var n = prompt('Enter number of terms : ','5');
+				for(i=0;i<n;i++)
+				{
+					data[i] = parseInt(prompt('Enter terms '+(i+1)));
+					// type casted here as it will always consider string
+				}
+				alert(data);
+
+
+				// applying selection sort
+				for(i=0;i<n-1;i++)
+				{
+					var min = i;
+					for(j=i+1;j<n;j++)
+					{
+						if(data[j]<data[min])
+						{
+							min = j;
+						}
+					}
+					temp = data[min];
+					data[min] = data[i];
+					data[i] = temp;
+				}
+				alert("Sorted array is : " + data);
+
+
+			}
+		</script>
+	</head>
+	<body onload="sorting()">
+
+		<form name="myForm">
+			<label for="name">Enter name</label>
+			<input type = "text" name="name" id="name"/>
+			<br><br>
+			<input type="submit" onclick="validateForm()"/>
+		</form>
+	</body>
+</html>
