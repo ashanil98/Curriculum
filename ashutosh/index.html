@@ -1,118 +1,97 @@
-<!doctype html>
 <html>
-	<head>
-		<meta charset="utf-8"/>
-		<title>Phone|Comparison</title>
-		<link rel="stylesheet" href="index.css"/>
-	</head>
-	<body>
-		<div class="container">
-			<header>
-				<h1>Welcome to Phone Comparison <h1>
-			</header>
-			<div class="phones">
-				<img src="samsung.jpg" height="200" width="200"/>
-				<img src="mi.jpg" height="200" width="200"/>
-				<img src="dk.jpg" height="200" width="200"/>
-				<div class="clear"></div>
-				<!-- table for samsung -->
-				<table border="1">
-					<tr>
-						<th>Name</th>
-						<td>Samsung Grand</th>
-					</tr>
-					<tr>
-						<th>RAM</th>
-						<td>1.5GB</td>
-					</tr>
-					<tr>
-						<th>Rear Cam</th>
-						<td>8MP</td>
-					</tr>
-					<tr>
-						<th>Front Cam</th>
-						<td>1.9MP</td>
-					</tr>
-					<tr>
-						<th>Price on Flipcart</th>
-						<td>Rs. 15,999
-					</tr>
-					<tr>
-						<th>Price on Walmart</th>
-						<td>$7.99</td>
-					</tr>
-					<tr>
-						<th>Price on Amazon</th>
-						<td>$148</td>
-					</tr>
-				</table>
-				<!-- table for redmi -->
-				<table border="1">
-					<tr>
-						<th>Name</th>
-						<td>Redmi note 4</th>
-					</tr>
-					<tr>
-						<th>RAM</th>
-						<td>4GB</td>
-					</tr>
-					<tr>
-						<th>Rear Cam</th>
-						<td>13MP</td>
-					</tr>
-					<tr>
-						<th>Front Cam</th>
-						<td>5MP</td>
-					</tr>
-					<tr>
-						<th>Price on Flipcart</th>
-						<td>Rs. 10,999</td>
-					</tr>
-					<tr>
-						<th>Price on Walmart</th>
-						<td>$8.99</td>
-					</tr>
-					<tr>
-						<th>Price on Amazon</th>
-						<td>$164.99</td>
-					</tr>
-				</table>
-				<!-- table for random phone -->
-				<table border="1">
-					<tr>
-						<th>Name</th>
-						<td>Nokia </th>
-					</tr>
-					<tr>
-						<th>RAM</th>
-						<td>4GB</td>
-					</tr>
-					<tr>
-						<th>Rear Cam</th>
-						<td>16MP</td>
-					</tr>
-					<tr>
-						<th>Front Cam</th>
-						<td>8MP</td>
-					</tr>
-					<tr>
-						<th>Price on Flipcart</th>
-						<td>Rs. 12,999</td>
-					</tr>
-					<tr>
-						<th>Price on Walmart</th>
-						<td>$10.99</td>
-					</tr>
-					<tr>
-						<th>Price on Amazon</th>
-						<td>$64.99</td>
-					</tr>
-				</table>
-			</div>
-			<div class="clear"></div>
-			<footer>
-				<h2 align="center">&copy; Copyright 2018</h2>
-			</footer>
-		</div>
-	</body>
+<script >
+function reset1()
+{
+x=confirm("It will clear all the text entered")
+if(x==true)
+{
+document.form1.t1.value=""
+document.form1.t2.value=""
+document.form1.ta.value=""
+document.form1.t3.value=""
+document.form1.r1[0].checked=false
+document.form1.r1[1].checked=false
+document.form1.c1.checked=false
+document.form1.c2.checked=false
+document.form1.c3.checked=false
+document.form1.c4.checked=false
+document.form1.c5.checked=false
+document.form1.c6.checked=false
+document.form1.t1.focus()
+}
+}
+function check()
+{
+if((document.form1.t1.value=="")||(!(isNaN(document.form1.t1.value))))
+{
+alert("please enter the correct name")
+document.form1.t1.value=""
+document.form1.t1.focus()
+}
+else if((document.form1.t2.value=="")||(isNaN(document.form1.t2.value)))
+{
+alert("please enter the age correctly")
+document.form1.t2.value=""
+document.form1.t2.focus()
+}
+else if(document.form1.t2.value>40)
+{
+alert("Sorry you age is beyound the limit")
+document.form1.t2.value=""
+document.form1.t2.focus()
+}
+else if(document.form1.ta.value=="")
+{
+alert("please enter the address")
+document.form1.ta.focus()
+}
+else if((document.form1.r1[0].checked==false)&&(document.form1.r1[1].checked==false))
+{
+alert("please select the radio button")
+document.form1.r1[0].focus()
+}
+else if((document.form1.c1.checked==false)&&(document.form1.c2.checked==false)&&(document.form1.c3.checked==false)&&(document.form1.c4.checked==false)&&(document.form1.c5.checked==false))
+{
+alert("please select the the languages known")
+document.form1.c1.focus()
+}
+else if(document.form1.t3.value=="")
+{
+alert("please enter the password")
+document.form1.t3.focus()
+}
+else if((document.form1.t1.value!="")&&(document.form1.t2.value!="")&&(document.form1.t3.value!="")&&(document.form1.ta.value!="")&&((document.form1.r1[0].checked!=false)||(document.form1.r1[0].checked!=false))&&((document.form1.c1.checked!=false)||(document.form1.c2.checked!=false)||(document.form1.c3.checked!=false)||(document.form1.c4.checked!=false)||(document.form1.c5.checked!=false)))
+{
+x=confirm("you have entered the datas correctly,want to submit the form")
+if(x)
+{
+document.lay.visibility="show"
+}
+}
+}
+</script>
+<body bgcolor="lightblue" text="red" style="font-size:15pt;font-family:Garamond" onload=document.form1.t1.focus()><center>
+<h2>ENTRY FORM</h2></center>
+<form name=form1 method=post >
+<table name=tab cellspacing=30pt>
+<tr><td align=left><h2>Enter your Name :</h2> </td><td align=right><input type=text name=t1 size=18>
+<tr><td align=left><h2>Enter your Age :</h2> </td><td align=right><input type=text name=t2 maxlength=3 size=18>
+<tr><td align=left><h2>Enter your Address :</h2> </td><td align=right><textarea name=ta rows=5 cols=15></textarea>
+<tr><td align=left><h2>Sex :</h2> </td><td align=left><input type=radio name=r1 value="female">Female<br>
+<input type=radio name=r1 value=male>Male</td>
+<tr><td align=left><h2>Languages Known :</h2> </td><td align=left><center>(select more than one)</center>
+<input type=checkbox name=c1 value=c>C<br>
+<input type=checkbox name=c2 value=c++>C++<br>
+<input type=checkbox name=c3 value=vb>VB<br>
+<input type=checkbox name=c4 value=java>JAVA<br>
+<input type=checkbox name=c5 value=asp>ASP<br>
+<input type=checkbox name=c6 value=others>OTHERS<br></td>
+<tr><td align=left><h2>Enter your Password :</h2> </td><td align=right><input type=password name=t3 size=18>
+</table><center>
+<input type=button value=" reset " onClick=reset1()>
+<input type=button value=" check " onClick=check()>
+<h3>Before submitting the datas please click the check Button</h3>
+<input type="submit" value=" submit "></center>
+</form>
+</body>
 </html>
